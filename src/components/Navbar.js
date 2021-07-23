@@ -12,9 +12,9 @@ export default function Navbar() {
                 <Link to='/people'>
                     <Menu.Item name='people' />
                 </Link>
-                <Link to='search'>
+                {/* <Link to='search'>
                     <Menu.Item name='search' />
-                </Link>
+                </Link> */}
             </Container>
         </Menu>
     );

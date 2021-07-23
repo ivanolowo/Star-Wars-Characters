@@ -5,32 +5,27 @@ import { Container, Dimmer, Loader } from 'semantic-ui-react';
 import Home from './components/Home';
 import People from './components/People';
 import Search from './components/Search';
-
+//import Datatable from '../datatable/index.jsx'
 import './App.css';
 
 function App() {
-  const [people, setPeople] = useState([]);
-  const [search, setSearch] = useState([]);
+  //const [state, setState] = useState([]);
+  const [people, setPeople] = useState('');
   const [loading, setLoading] = useState([true]);
+  const [search, setSearch] = useState([false]);
 
   useEffect(() => {
     async function fetchPeople() {
       let res = await fetch('https://swapi.dev/api/people/');
       let data = await res.json();
       setPeople(data.results);
-      setLoading(false);
     }
 
-    async function fetchSearch() {
-      let res = await fetch('https://swapi.dev/api/people/?search=r');
-      let data = await res.json();
-      setSearch(data.results);
-      setLoading(false);
-    }
     fetchPeople();
-    fetchSearch();
+    //fetchSearch();
+    setLoading(false);
   }, [])
-
+  console.log('data', people);
   return (
     <>
       <Router>
@@ -48,13 +43,14 @@ function App() {
                 <Route exact path="/people">
                   <People data={people} />
                 </Route>
-                <Route exact path="/search">
-                  <Search />
-                </Route>
+                {/* <Route exact path="/search">
+                  <Search data={search} />
+                </Route> */}
               </Switch>
             )}
         </Container>
       </Router>
+      
     </>
   );
 }
